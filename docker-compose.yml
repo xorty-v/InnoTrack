@@ -1,0 +1,35 @@
+﻿services:
+  backend:
+    image: innotrack.backend
+    build:
+      context: .
+      dockerfile: src/InnoTrack.WebApi/Dockerfile
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - database
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=database,5432;Database=InnoTrack;User Id=postgres;Password=postgres;
+  frontend:
+    image: nginx:alpine
+    volumes:
+      - ./frontend:/etc/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+  database:
+    image: postgres:15.3
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
