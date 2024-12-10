@@ -11,14 +11,22 @@
 
 <body>
     <header>
-        <h1>Информация о технологиях и продуктах</h1>
+        <h1>Данные инноваций Грузии</h1>
     </header>
 
     <section class="table-wrapper">
         <div class="table-controls">
-            <button class="add-btn" onclick="openPopup('add')">
-                <i class="fas fa-plus"></i> Добавить запись
-            </button>
+            <div class="action-buttons">
+                <button class="add-btn" onclick="openPopup('add')">
+                    <i class="fas fa-plus"></i> Добавить запись
+                </button>
+                <button class="toggle-table-btn" onclick="toggleTableVisibility()">
+                    <i class="fas fa-eye"></i> Отобразить таблицу
+                </button>
+                <button class="clear-table-btn" onclick="clearTable()">
+                    <i class="fas fa-trash"></i> Очистить таблицу
+                </button>
+            </div>
             <div class="search-box">
                 <input type="text" placeholder="Найти запись..." id="searchInput">
                 <button class="search-btn">
@@ -30,7 +38,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Автор</th>
+                    <th>Авторы</th>
                     <th>Наименование организации</th>
                     <th>Электронная почта организации</th>
                     <th>Название технологии</th>

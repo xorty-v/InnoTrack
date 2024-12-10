@@ -39,13 +39,13 @@ function displayInnovations(innovations) {
                                                     productName: '${innovation.productName}', 
                                                     dateTime: '${innovation.dateTime}'
                                                 })">
-                                                <i class="fas fa-edit"></i>
+                                                <p class="button-text" style="font-weight: bold;">Р</p>
                                             </button>
                                             <button class="action-btn delete-btn" onclick="deleteInnovation(${innovation.id})">
-                                                <i class="fas fa-trash-alt"></i>
+                                                <p class="button-text" style="font-weight: bold;">У</p>
                                             </button>
                                             <button class="action-btn download-btn" onclick="downloadPdf(${innovation.id})">
-                                                <i class="fas fa-download" style="color: #4caf50;"></i>
+                                                <p class="button-text" style="font-weight: bold; color: #4caf50;">С</p>
                                             </button>
                                         </td>
                                     </tr>
@@ -82,6 +82,10 @@ function updatePagination(currentPage, totalPages, hasPrevious, hasNext) {
 }
 
 function changePage(direction) {
+    if (tableContainer.innerHTML == "") {
+        return;
+    }
+
     const newPage = currentPage + direction;
     currentPage = newPage;
     getInnovations(newPage);
@@ -108,7 +112,14 @@ function deleteInnovation(id) {
         });
 }
 
-getInnovations(currentPage);
+function toggleTableVisibility() {
+    getInnovations(currentPage);
+}
+
+function clearTable() {
+    tableContainer.innerHTML = "";
+    currentPage = 1;
+}
 
 function deleteInnovation(id) {
     fetch(url + `/${id}`, {
@@ -140,8 +151,8 @@ function addInnovation(authorName, organizationName, organizationEmail, technolo
         }
     })
         .then(_ => {
-            getInnovations(currentPage);
-            closePopup();
+            // getInnovations(currentPage);
+            cleanPopup()
         });
 }
 

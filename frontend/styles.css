@@ -55,7 +55,13 @@ table th {
     margin-bottom: 0.5rem;
 }
 
-.add-btn {
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add-btn, .toggle-table-btn, .clear-table-btn {
     background-color: #4CAF50;
     color: white;
     padding: 0.5rem 1rem;
@@ -66,8 +72,24 @@ table th {
     gap: 0.5rem;
 }
 
-.add-btn:hover {
+.add-btn:hover, .toggle-table-btn:hover, .clear-table-btn:hover {
     background-color: #45a049;
+}
+
+.clear-table-btn {
+    background-color: #f44336;
+}
+
+.clear-table-btn:hover {
+    background-color: #e41d1d;
+}
+
+.toggle-table-btn {
+    background-color: #2196F3;
+}
+
+.toggle-table-btn:hover {
+    background-color: #1976D2;
 }
 
 .search-box {
@@ -204,4 +226,11 @@ table th {
     background-color: #ccc;
     color: #666;
     cursor: not-allowed;
+}
+
+.button-text {
+    margin: 0;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
 }

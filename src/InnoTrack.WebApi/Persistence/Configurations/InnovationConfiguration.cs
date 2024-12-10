@@ -13,21 +13,51 @@ public class InnovationConfiguration : IEntityTypeConfiguration<Innovation>
 
         builder.HasGeneratedTsVectorColumn(
                 i => i.SearchVector,
-                "english",
+                "russian",
                 i => new { i.AuthorName, i.ProductName, i.TechnologyName, i.OrganizationName })
             .HasIndex(i => i.SearchVector)
             .HasMethod("GIN");
 
-        var innovationFaker = new Faker<Innovation>()
+        var innovationFaker = new Faker<Innovation>("ru")
             .RuleFor(i => i.Id, f => f.IndexFaker + 1)
-            .RuleFor(i => i.AuthorName, f => f.Name.FullName())
-            .RuleFor(i => i.OrganizationName, f => f.Company.CompanyName())
+            .RuleFor(i => i.AuthorName, f => f.Name.FirstName() + " " + f.Name.LastName())
             .RuleFor(i => i.OrganizationEmail, f => f.Internet.Email().ToLower())
-            .RuleFor(i => i.TechnologyName, f => f.Commerce.Product())
-            .RuleFor(i => i.ProductName, f => f.Commerce.ProductName())
-            .RuleFor(i => i.DateTime, f => DateTime.UtcNow);
+            .RuleFor(i => i.TechnologyName, f => f.PickRandom(new[]
+            {
+                "Нейросеть",
+                "Квантовые вычисления",
+                "ИИ",
+                "Машинное обучение",
+                "IoT платформа",
+                "Доставка",
+                "Распознавание речи"
+            }))
+            .RuleFor(i => i.ProductName, f => f.PickRandom(new[]
+            {
+                "Программное обеспечение",
+                "Аналитическая платформа",
+                "Сенсор",
+                "Процессор",
+                "Система мониторинга",
+                "Устройство связи",
+                "Графический чип"
+            }))
+            .RuleFor(i => i.OrganizationName, f => f.PickRandom(new[]
+            {
+                "ТехноСтар",
+                "ИнноТех",
+                "ГиперСофт",
+                "РобоТех",
+                "СофтТек",
+                "МегаТехнологии",
+                "ИнфоСистемы",
+                "НаноТех",
+                "ГлобалТех",
+                "ИнтелСистемы"
+            }))
+            .RuleFor(i => i.DateTime, f => f.Date.Past(5, DateTime.UtcNow));
 
-        List<Innovation> innovations = innovationFaker.Generate(60);
+        var innovations = innovationFaker.Generate(60);
 
         builder.HasData(innovations);
     }

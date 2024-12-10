@@ -1,7 +1,6 @@
 using InnoTrack.WebApi.Contracts.Innovations;
 using InnoTrack.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
-using Nest;
 
 namespace InnoTrack.WebApi.Controllers;
 
