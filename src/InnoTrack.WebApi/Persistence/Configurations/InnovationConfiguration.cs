@@ -11,10 +11,30 @@ public class InnovationConfiguration : IEntityTypeConfiguration<Innovation>
     {
         builder.HasKey(x => x.Id);
 
+        builder.Property(i => i.AuthorName)
+            .IsRequired()
+            .HasMaxLength(150);
+
+        builder.Property(i => i.OrganizationName)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        builder.Property(i => i.OrganizationEmail)
+            .IsRequired()
+            .HasMaxLength(255);
+
+        builder.Property(i => i.TechnologyName)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        builder.Property(i => i.ProductName)
+            .IsRequired()
+            .HasMaxLength(100);
+
         builder.HasGeneratedTsVectorColumn(
                 i => i.SearchVector,
                 "russian",
-                i => new { i.AuthorName, i.ProductName, i.TechnologyName, i.OrganizationName })
+                i => new { i.AuthorName, i.OrganizationName, i.TechnologyName })
             .HasIndex(i => i.SearchVector)
             .HasMethod("GIN");
 

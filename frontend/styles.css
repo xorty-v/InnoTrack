@@ -61,7 +61,10 @@ table th {
     gap: 0.5rem;
 }
 
-.add-btn, .toggle-table-btn, .clear-table-btn {
+.add-btn,
+.edit-btn,
+.download-btn,
+.delete-btn {
     background-color: #4CAF50;
     color: white;
     padding: 0.5rem 1rem;
@@ -72,24 +75,10 @@ table th {
     gap: 0.5rem;
 }
 
-.add-btn:hover, .toggle-table-btn:hover, .clear-table-btn:hover {
+.add-btn:hover .edit-btn:hover,
+.download-btn:hover,
+.delete-btn:hover {
     background-color: #45a049;
-}
-
-.clear-table-btn {
-    background-color: #f44336;
-}
-
-.clear-table-btn:hover {
-    background-color: #e41d1d;
-}
-
-.toggle-table-btn {
-    background-color: #2196F3;
-}
-
-.toggle-table-btn:hover {
-    background-color: #1976D2;
 }
 
 .search-box {
@@ -104,7 +93,7 @@ table th {
     padding: 0.5rem;
     border: none;
     outline: none;
-    width: 250px;
+    width: 350px;
 }
 
 .search-box .search-btn {
@@ -129,22 +118,6 @@ table th {
 .action-btn .icon {
     width: 16px;
     height: 16px;
-}
-
-.edit-btn {
-    color: #afa34c;
-}
-
-.delete-btn {
-    color: #a04545;
-}
-
-.edit-btn:hover {
-    color: #e0b02c;
-}
-
-.delete-btn:hover {
-    color: #ba1717;
 }
 
 .popup {
@@ -228,9 +201,44 @@ table th {
     cursor: not-allowed;
 }
 
-.button-text {
-    margin: 0;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
+.inactive {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.selected {
+    background-color: #f0f8ff;
+    transition: background-color 0.2s ease;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: #e6f7ff;
+}
+
+.validation-error-popup-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.validation-error-popup {
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    transition: transform 0.3s ease-in-out;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.validation-error-popup:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }

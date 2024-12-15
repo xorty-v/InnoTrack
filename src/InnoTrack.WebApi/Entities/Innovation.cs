@@ -2,8 +2,6 @@ using NpgsqlTypes;
 
 namespace InnoTrack.WebApi.Entities;
 
-// не думаю, что мою работу оценят по достоинству, поэтому делаю её так, чтобы облегчить себе жизнь и получить тот же результат.
-// тут надо бы нормализацию, но кто вообще знает что это такое...
 public class Innovation
 {
     public int Id { get; set; }
