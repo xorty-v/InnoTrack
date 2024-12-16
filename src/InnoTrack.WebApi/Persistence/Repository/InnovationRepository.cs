@@ -26,6 +26,7 @@ public class InnovationRepository : IInnovationRepository
         CancellationToken cancellationToken)
     {
         return await _dbContext.Innovations
+            .AsNoTracking()
             .Where(i => i.SearchVector.Matches(EF.Functions.PhraseToTsQuery("russian", searchQuery)))
             .ToPaginatedResponse(pageNumber, pageSize, cancellationToken);
     }

@@ -207,13 +207,13 @@ table th {
 }
 
 .selected {
-    background-color: #f0f8ff;
+    background-color: #f2fff0;
     transition: background-color 0.2s ease;
 }
 
 tr:hover {
     cursor: pointer;
-    background-color: #e6f7ff;
+    background-color: #ecffe6;
 }
 
 .validation-error-popup-container {

@@ -11,6 +11,7 @@ const addButton = document.querySelector("#addBtn");
 const editButton = document.querySelector("#editBtn");
 const downloadButton = document.querySelector("#downloadBtn");
 const deleteButton = document.querySelector("#deleteBtn");
+const dataButton = document.querySelector("#downloadData");
 const saveButton = document.querySelector("#btn-save");
 const url = '/api/Innovations';
 
@@ -275,6 +276,10 @@ downloadButton.addEventListener('click', async () => {
 deleteButton.addEventListener('click', async () => {
     await deleteInnovation(selectedData.id);
 });
+
+// dataButton.addEventListener('click', async () => {
+//     getInnovations(currentPage);
+// });
 
 saveButton.addEventListener('click', async (event) => {
     event.preventDefault();
